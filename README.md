@@ -5,7 +5,7 @@
 
 ---------------------------
 
-### Profesores:
+### Docente:
 - Ana Maria Farias.
 
 ### Miembros:
@@ -13,155 +13,80 @@
 - Durigutti, Vittorio | GitHub: https://github.com/vittoriodurigutti
 - Zalazar, Joaquin | GitHub: https://github.com/breaakerr
 - Juncos, Lisandro | GitHub: https://github.com/Lisandro-05
-- Marquez, Jose | GitHub: https://github.com/ISPC-TST-PI-I-2024/josemarquez.git
+- Marquez, Jose | GitHub: https://github.com/marquezjose
 
 
-### Índice
+___
+# TS TELECOMUNICACIONES EC SISTEMAS CIBERFISICOS 2024
 
+El avance de la tecnología ha llevado a la convergencia entre sistemas físicos y digitales, creando lo que hoy conocemos como **Sistemas Ciberfísicos (CPS)**. Estos sistemas, que integran el control y la comunicación entre elementos físicos y computacionales, se están convirtiendo en un pilar fundamental en la transformación de las telecomunicaciones y otras industrias. En este espacio curricular, los estudiantes explorarán cómo los CPS permiten una mayor eficiencia, automatización y seguridad en la gestión de redes y servicios de telecomunicaciones. A través de una combinación de teoría y práctica, se abordarán los componentes clave, la arquitectura, y las aplicaciones actuales de los CPS, preparando a los futuros profesionales para enfrentar los desafíos y aprovechar las oportunidades que estos sistemas ofrecen en un entorno tecnológico en constante evolución  
 
-| [![Demostracion del uso automatico](E%20assets\Demostracion_uso.png)](https://youtube.com/shorts/zFDpbnvFVWU?feature=share) | [![Demostracion del uso manual](E%20assets\Demostracion_uso.png)](https://youtube.com/shorts/pIPmyRFcj_Q?feature=share)|
+### Descripción del Módulo/Descripción General
 
+El espacio curricular "Sistemas Ciberfísicos" se centra en la comprensión y aplicación de los sistemas que integran componentes físicos y digitales para el control, monitoreo y comunicación en tiempo real. Este curso está diseñado para estudiantes de la Tecnicatura Superior en Telecomunicaciones, brindándoles conocimientos sobre la arquitectura, los protocolos y las tecnologías involucradas en los Sistemas Ciberfísicos (CPS). A lo largo del curso, se abordarán los principios fundamentales de los CPS, su papel en la optimización de redes de telecomunicaciones, y las herramientas necesarias para diseñar, implementar y gestionar estos sistemas de manera efectiva.
 
+- Naturaleza Ontológica :  La naturaleza ontológica del módulo “Sistemas Ciberfísicos” se fundamenta en el estudio de entidades híbridas que integran componentes físicos y digitales para interactuar con su entorno y ejecutar procesos autónomos o semi-autónomos. Estos sistemas combinan hardware, software, redes y algoritmos de control para monitorear, procesar y responder en tiempo real a condiciones cambiantes.
 
----------------------------
-### Estructura del Repositorio
+En el ámbito de las telecomunicaciones, los CPS se conciben como  objetos tecnológicos complejos  que poseen una existencia funcional propia, definida por la interoperabilidad entre sus elementos y la capacidad de integrarse a infraestructuras distribuidas, como redes IoT, 5G o arquitecturas de nube.  
+Desde esta perspectiva, el módulo aborda el CPS como:
 
-- **A requisitos**: Contiene documentos de requisitos proporcionados por el docente.
-- **B investigacion**: Investigaciones realizadas por los estudiantes.
-- **C prototipo**: Implementaciones específicas y código prototipo para el proyecto.
-- **D presentacion**: Incluye grabaciones y bitácoras de las reuniones de Scrum, así como las presentaciones de progreso.
-- **E assets**: Contiene recursos gráficos como imágenes y otros archivos necesarios para la documentación.
+-   Entidad técnica: compuesto por sensores, actuadores, redes y plataformas de control.
+    
+-   Entidad informacional: que procesa y transmite datos para la toma de decisiones.
+    
+-   Entidad socio-técnica: que interactúa con usuarios, organizaciones y entornos productivos
+    
 
-### 🔹 Presentación General  
+-  **Naturaleza Epistemologica**:La epistemología modular de “Sistemas Ciberfísicos” se enmarca en un enfoque interdisciplinario que combina conocimientos de ingeniería de telecomunicaciones, informática, control automático y ciberseguridad. Este marco epistemológico se sustenta en:
 
-El módulo Programador FullStack IoT es un espacio interdisciplinario que integra las materias Arquitectura y Conectividad, Sistemas de Control y Servicios y Plataformas, orientado al diseño e implementación de soluciones IoT aplicadas a la industria.
-Los estudiantes trabajarán en equipos desarrollando un proyecto técnico completo que abarque sensado, conectividad, automatización, visualización de datos y documentación profesional.
-El trabajo se organiza bajo el enfoque de Aprendizaje Basado en Proyectos (ABP), con metodologías ágiles Scrum y Kanban.
-El desarrollo debe gestionarse en GitHub y documentarse en el propio repositorio.
+1.  **Racionalidad técnica y científica**:
+    
+    -   Uso de modelos y teorías de la ingeniería para describir, predecir y optimizar el comportamiento de sistemas físicos integrados con plataformas digitales.
+        
+    -   Aplicación de metodologías de diseño y verificación propias de la ingeniería de sistemas y las telecomunicaciones.
+        
+2.  **Enfoque constructivista-aplicado**:
+    
+    -   Construcción del conocimiento a través de la resolución de problemas reales en entornos simulados y casos de estudio.
+        
+    -   Integración de la experiencia práctica con la teoría para desarrollar competencias profesionales.
+        
+3.  **Carácter modular y evolutivo del saber**:
+    
+    -   El contenido del módulo se articula en bloques temáticos que abarcan desde la arquitectura y protocolos hasta la implementación y mantenimiento de CPS.
+        
+    -   La estructura responde a la necesidad de actualización constante frente a la rápida evolución tecnológica en redes y sistemas inteligentes.
+        
+4.  **Interconexión teoría-práctica**:
+    
+    -   Se promueve la experimentación con plataformas y entornos de simulación (p. ej., MATLAB, Packet Tracer, Node-RED) para reforzar la comprensión teórica.
+        
+    -   El aprendizaje se vincula con contextos de telecomunicaciones reales: redes de sensores, gestión de torres, control de tráfico de datos, etc.
+        
 
----------------------------
+**Duración del Espacio Curricular o Módulo**
 
-### Links de Uso y Presentacion:
+El espacio curricular "Sistemas Ciberfísicos" tiene una duración total de 14 semanas, distribuidas en clases teóricas, talleres prácticos
 
-El proyecto dispone de variedad de paneles de informacion, creados y gestionados via grafana, con los que se expone informacion la informacion recabada por nuestros dispositivos. 
-Permitiendo tener en tiempo real una vista del estado de los mismos, y del entorno que sensan. Dejamos a contiunacion una serie de links a cada uno de paneles de forma que puedan observar lo realizado, y tener una mirada del estado de nuestro proyecto
+**Objetivos del Espacio Curricular o Módulo**
 
-**Dashboard [Grafana]**
-- [Mediciones de Gas](http://telecomunicaciones.ddns.net:8080/grafana/public-dashboards/5c6d33af6d3c4dd8b2dc677b6a31fec4)
-- [Metricas en Tiempo Real](http://telecomunicaciones.ddns.net:8080/grafana/public-dashboards/8f8a0a1b3fe84d4e86012579bedf86bd)
-- [Metricas en Tiempo Real con interaccion via NODE-RED](http://telecomunicaciones.ddns.net:8080/nodered_opalo/ui/#!/0?socketid=M7q85yKFzJ3xeGtpAAAL)
+##### -Objetivo General
 
+-   Comprender, diseñar y aplicar sistemas ciberfísicos en el ámbito de las telecomunicaciones, integrando componentes físicos y digitales para optimizar procesos de control, monitoreo y comunicación en tiempo real.
+    
+-   Desarrollar competencias técnicas y analíticas para implementar soluciones innovadoras basadas en CPS que mejoren la eficiencia, seguridad y escalabilidad de las infraestructuras de telecomunicaciones.
+    
 
-<p align="center">
-  <img src="E%20assets/grafana1.png" alt="Imagen 1" width="400"/>
-  <img src="E%20assets/grafana2.png" alt="Imagen 2" width="400"/>
-  <img src="E%20assets/grafana3.png" alt="Imagen 3" width="400"/>
-  <img src="E%20assets/Nodered.png" alt="Imagen 4" width="400"/>
-</p>
+  
 
----------------------------
+##### -Objetivos Específicos
 
-### 🔹 Selección del Proyecto  
-
-Sistema de detección y extracción de gases inflamables 🔥​​🚨​
-
-### 🔹 Problemática a tratar
-Disponemos de una localización con maquinaria con alta posibilidad de emanación de gases contaminantes inflamables. Los mismos no son problemáticos exceptuando concentración alta durante periodos prolongados. Tenemos distribuidos una serie de de sensores de gas combustibles a lo largo del deposito mencionado, ubicados estratégicamente. El mismo dispone de energía eléctrica provista por generadores, pero no de internet. Mediante la aplicación de dispositivos sensores con comunicación LoRa incorporado buscamos estar informados en el estado a tiempo real dentro de el sitio. Esto nos permite llevar un seguimiento y análisis preventivo, e identificar fallas que deban requerir intervención humana. Pero a su vez, la distancia supone un problema para asistir fallas, por lo que disponemos de dispositivos extractores con potencia variable distribuidos dentro. Nuestro sistema receptor se encarga de la manipulación de los umbrales mediante los cuales se dispara la accion y potencia de dichos extractores. Disponemos como extra de accionadores manuales remotos via apps con los que disparar los extractores ante criterio humano.
-
------------------------------
-
-### Stack Tecnológico Común
-
-- Control de Versiones: **Git y GitHub**
-- Metodologías Ágiles: **Scrum y Kanban**
-- Aprendizaje Basado en Proyectos (ABP)
-- Soporte DevOps por parte del docente
-
-### Stack Tecnológico para el desarrollo
-
-- IDE: **Visual Studio Code**
-- Simulador: **Wokwi**
-
-### Base de Datos y visualizacion:
-
-- DB: **MariaDB**
-- Dashboard: **Grafana**, **Node Red**
-
-###  Despliegue
-
-- Contendores: **Docker**
-
-### Comunicacion + Protocolos
-- [API_en_python](C%prototipo/Backend_API/Readme.md)
-- MQTT: Broker: Mosquitto (test.mosquitto.org) | 
-- Lora: Sin protocolo LoRaWAN - Comunicacion punto-punto TX-RX  
-- Wifi: Nodo con funcion Gateway
-
------------------------------
-
-Arquitectura del Sistema 
-
-![Arquitectura del sistema](E%20assets/arquitectura2.png)
-
------------------------------
-
-🔁 Organización por Sprints
-A continuación, se detalla la planificación semanal del módulo, dividida en tres sprints:  
-
-
-## SPRINT 1  
-
-### Exploración y Diseño Conceptual (Semanas 1 a 3)
-🎯 **Objetivo:** Identificar la problemática industrial, investigar, seleccionar tecnologías y diseñar la arquitectura del sistema.
-- Conformación de equipos y análisis de áreas.
-- Benchmarking tecnológico y definición del problema.
-- Selección de sensores, actuadores y protocolos.
-- Diseño preliminar de red IoT y lógica de control.
-- Creación del repositorio en GitHub.
-- Primeros diagramas de arquitectura y flujo.
-
------------------------------
-
-## SPRINT 2  
-
-### Desarrollo e Integración Técnica (Semanas 4 a 7)
-🎯 **Objetivo**: Desarrollar el sistema, integrar sensores, lógica de control y plataforma IoT.
-- Conexión de sensores físicos o virtuales.
-- Implementación de lógica de automatización.
-- Ingesta de datos y visualización inicial en dashboard.
-- Pruebas funcionales del sistema integrado.
-- Validación técnica y mejoras sobre el prototipo.
-
------------------------------
-
-## SPRINT 3  
-
-### Optimización y Presentación Final (Semanas 8 a 10)
-🎯 **Objetivo**: Optimizar el sistema, completar la documentación técnica y presentar el proyecto final.
-- Ajustes técnicos y mejoras visuales.
-- Finalización de la documentación por materias.
-- Validación cruzada entre equipos (testing).
-- Ensayo y presentación final.
-- Autoevaluación y coevaluación.
-
-### 🎯 Entregable final (Semana 10)  
-
-**Prototipo funcional (simulado o físico)**
-
-**Dashboard operativo**
-
-**Documentación técnica completa**
-
-**Repositorio Git con historial del trabajo**
-
-**Exposición y defensa del proyecto en equipo**
-
------------------------------
-
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia Creative Commons Atribución-NoComercial (CC BY-NC). Esta licencia permite que otros remixen, adapten y construyan sobre el trabajo de forma no comercial y, aunque sus nuevos trabajos deben también reconocer al autor original y ser no comerciales, no tienen que licenciar sus obras derivadas en los mismos términos.
-
-Esta licencia es adecuada para un uso educativo y de aprendizaje, permitiendo la libre distribución y utilización del material mientras se protege contra el uso comercial sin autorización previa. Para usos comerciales, es necesario contactar a los autores para obtener permiso.
-
-Para obtener más información sobre esta licencia y ver una copia completa de sus términos, visite [Creative Commons Atribución-NoComercial (CC BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/).
+-   Analizar la arquitectura, componentes y funcionamiento de los sistemas ciberfísicos aplicados a redes y servicios de telecomunicaciones.
+    
+-   Identificar y evaluar los principales protocolos de comunicación, estándares y tecnologías que soportan la interoperabilidad en CPS.
+    
+-   Aplicar herramientas de simulación, programación y modelado para el diseño e integración de CPS en entornos reales o virtuales.
+    
+-   Reconocer y gestionar aspectos críticos de ciberseguridad, confiabilidad y mantenimiento en sistemas ciberfísicos.
+    
+-   Desarrollar proyectos integradores que apliquen soluciones CPS en casos prácticos vinculados a la industria de las telecomunicaciones.
