@@ -1,0 +1,11 @@
+services:
+  fullstack_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fullstack_app
+    env_file:
+      - .env
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    restart: unless-stopped
