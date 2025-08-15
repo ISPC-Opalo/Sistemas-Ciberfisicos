@@ -1,24 +1,20 @@
 ![Logo de la Institución ISPC](E%20assets/caratula.png)
 
-# Módulo Programador FullStack IoT
-## Tecnicatura Superior en Telecomunicaciones – Segundo Año
+# Espacio curricular "SISTEMAS CIBER FISICOS"
+## Tecnicatura Superior en Telecomunicaciones – Segundo Año Cohorte 2024
 
 ---------------------------
 
-### Profesores
-- Ing. Morales Jorge Elias | https://github.com/JorEl057
-- Mario Alejandro Gonzalez | https://github.com/mariogonzalezispc
-- Alejandro Mainero
+### Profesores:
+- Ana Maria Farias.
 
 ### Miembros:
 - Lujan, Luciano | GitHub: https://github.com/lucianoilujan
 - Durigutti, Vittorio | GitHub: https://github.com/vittoriodurigutti
 - Zalazar, Joaquin | GitHub: https://github.com/breaakerr
 - Juncos, Lisandro | GitHub: https://github.com/Lisandro-05
-- Velez, Nahuel | GitHub: https://github.com/ISPC-TST-PI-I-2024/ISPC_PI_Lucas_Nahuel_Velez 
 - Marquez, Jose | GitHub: https://github.com/ISPC-TST-PI-I-2024/josemarquez.git
-- Guzmán, Maria Lilen | GitHub: https://github.com/lilenguzman01
-- Paez, Tiziano | Github: https://github.com/tpaez
+
 
 ### Índice
 
