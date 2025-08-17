@@ -9,8 +9,10 @@ pass: grafanaadminpassword
 -------------
 NGINX proxy manager
 acceso: https://npm-admin.iot-opalo.work/
-user: admin@iot-opalo.work
-pass: opalopassword
+user: vittodutti@gmail.com
+pass: adminpassword
+Recuperar la clave con este paso a paso:
+[RECUPERAR CLAVE](https://github.com/NginxProxyManager/nginx-proxy-manager/discussions/1634)
 
 -------------
 Adminer
