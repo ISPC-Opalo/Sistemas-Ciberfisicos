@@ -1,4 +1,4 @@
-![Logo de la Institución ISPC](/E%20assets/caratula.png)  
+![Logo de la Institución ISPC](/E%20assets/Material%20de%20Referencia/ISPClogo.png)
 
 # Módulo Programador FullStack IoT
 ## Tecnicatura Superior en Telecomunicaciones – Segundo Año
