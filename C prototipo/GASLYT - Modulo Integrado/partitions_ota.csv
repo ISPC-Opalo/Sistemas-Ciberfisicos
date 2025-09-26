@@ -1,0 +1,11 @@
+# Name,        Type, SubType, Offset,   Size,     Flags
+nvs,           data, nvs,     0x9000,   0x6000,
+phy_init,      data, phy,     0xf000,   0x1000,
+factory,       app,  factory, 0x10000,  0x180000,  # 1.5MB para firmware
+ota_0,         app,  ota_0,   0x190000, 0x180000,  # 1.5MB para OTA
+ota_1,         app,  ota_1,   0x310000, 0x180000,  # 1.5MB para OTA
+certs_current, data, 0x40,    0x490000, 0x20000,   # 128KB para certificados actuales
+certs_backup,  data, 0x41,    0x4B0000, 0x20000,   # 128KB para backup de certificados
+config,        data, 0x42,    0x4D0000, 0x10000,   # 64KB para configuración
+ota_data,      data, 0x43,    0x4E0000, 0x2000,    # 8KB para datos OTA
+spiffs,        data, spiffs,  0x4E2000, 0x1E000,   # 120KB para sistema de archivos

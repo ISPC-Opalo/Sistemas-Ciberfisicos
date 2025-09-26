@@ -40,3 +40,7 @@ acceso: https://nodered.iot-opalo.work/
 user:
 pass:
 
+-------------
+Remix 
+acceso: http://remix.iot-opalo.work/
+
