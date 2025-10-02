@@ -16,6 +16,9 @@ volumes:
   npm_data:
   npm_letsencrypt:
   influxdb_data:
+  telegraf_data:
+  mosquitto_data:
+  mosquitto_logs:
 
 services:
   mariadb:
@@ -31,6 +34,7 @@ services:
     command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci"]
     volumes:
       - mariadb_data:/var/lib/mysql
+      - ./init-mariadb.sql:/docker-entrypoint-initdb.d/init-mariadb.sql:ro
     networks:
       - Opalo_network
     healthcheck:
@@ -122,7 +126,6 @@ services:
       - influxdb
       - adminer
       - remix
-      - ganache
 
   adminer:  # GUI web para administrar MariaDB
     image: adminer:latest
@@ -145,22 +148,46 @@ services:
       - Opalo_network
     # Sin puertos al host; publicar por NPM (remix.${BASE_DOMAIN} → http://remix:80)
 
-  ganache:
-    image: trufflesuite/ganache:latest
-    container_name: ganache
+
+  # MQTT Broker para GASLYT
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto
     restart: unless-stopped
-    command:
-      [
-        "--mnemonic", "${GANACHE_MNEMONIC}",
-        "--defaultBalanceEther", "${GANACHE_DEFAULT_BALANCE}",
-        "--networkId", "${GANACHE_NETWORK_ID}",
-        "--host", "0.0.0.0",
-        "--port", "8545"
-      ]
     environment:
       - TZ=${TZ}
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_logs:/mosquitto/log
     networks:
       - Opalo_network
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+  # Telegraf para procesamiento de datos MQTT
+  telegraf:
+    image: telegraf:1.28
+    container_name: telegraf
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - INFLUXDB_ADMIN_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - telegraf_data:/var/lib/telegraf
+    networks:
+      - Opalo_network
+    depends_on:
+      - mosquitto
+      - influxdb
+      - mariadb
 
   cloudflared:
     image: cloudflare/cloudflared:latest
