@@ -1,0 +1,29 @@
+Id,Task Name,Start Date,End Date,Duration,Percent Complete,Predecessors,Color
+1,Proyecto Gaslyt - Detector de Fugas de Gas IOT,2025-01-01,2025-11-18,322,0,,241
+2,Gestión del Proyecto,2025-01-01,2025-01-07,7,0,,91
+3,Planificación inicial y definición de requerimientos,2025-01-08,2025-01-14,7,0,,91
+4,Asignación de roles y cronograma,2025-01-15,2025-01-21,7,0,3,91
+5,Reuniones de seguimiento y scene del proyecto,2025-01-22,2025-01-28,7,0,4,91
+6,Diseño del Sistema,2025-01-29,2025-02-11,14,0,,
+7,Selección de componentes,2025-02-12,2025-02-25,14,0,5,
+8,Diseño esquemático del circuito,2025-02-26,2025-03-11,14,0,8,
+9,Diseño de la carcasa,2025-03-12,2025-03-25,14,0,9,211
+10,Validación del diseño,2025-03-26,2025-04-08,14,0,10,211
+11,Desarrollo del Firmware,2025-04-09,2025-04-22,14,0,,331
+12,Programación de lectura del sensor MG,2025-04-23,2025-05-06,14,0,11,331
+13,Conexión WiFi y envío de datos,2025-05-07,2025-05-20,14,0,13,331
+14,Configuración de unidades y alerta,2025-05-21,2025-06-03,14,0,14,331
+15,Pruebas unitarias del firmware,2025-06-04,2025-06-17,14,0,15,331
+16,Desarrollo de Interfaz de Usuario,2025-06-18,2025-07-01,14,0,,31
+17,Diseño de dashboard web,2025-07-02,2025-07-15,14,0,16,31
+18,Visualización de niveles de gas,2025-07-16,2025-07-29,14,0,18,31
+19,Notificaciones push o por email,2025-07-30,2025-08-12,14,0,19,31
+20,Integración y Pruebas,2025-08-13,2025-08-19,7,0,,61
+21,Ensamblaje del prototype físico,2025-08-20,2025-08-26,7,0,20,61
+22,Calibración del sensor,2025-08-27,2025-09-09,14,0,22,61
+23,Pruebas de campo con usuarios piloto,2025-09-10,2025-09-23,14,0,23,61
+24,Ajustes según feedback,2025-09-24,2025-10-07,14,0,24,61
+25,Documentación y Entrega,2025-10-08,2025-10-21,14,0,,271
+26,Elaboración del manual de usuario,2025-10-22,2025-11-04,14,0,25,271
+27,Documentación técnica,2025-11-05,2025-11-11,7,0,27,271
+28,Entrega formal del prototype,2025-11-12,2025-11-18,7,0,28,271
