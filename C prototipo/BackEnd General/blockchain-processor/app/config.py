@@ -54,6 +54,21 @@ class LoggingConfig:
     level: str = os.getenv('LOG_LEVEL', 'INFO')
     format: str = os.getenv('LOG_FORMAT', 'json')
     file_path: str = os.getenv('LOG_FILE_PATH', '/app/logs/blockchain-processor.log')
+
+@dataclass
+class RedisConfig:
+    """Configuración de Redis"""
+    host: str = os.getenv('REDIS_HOST', 'redis')
+    port: int = int(os.getenv('REDIS_PORT', '6379'))
+    password: str = os.getenv('REDIS_PASSWORD', '')
+    database: int = int(os.getenv('REDIS_DATABASE', '0'))
+    decode_responses: bool = True
+    
+    @property
+    def connection_url(self) -> str:
+        auth = f":{self.password}@" if self.password else ""
+        return f"redis://{auth}{self.host}:{self.port}/{self.database}"
+
     
 class Config:
     """Configuración principal del sistema"""
@@ -63,6 +78,7 @@ class Config:
         self.influxdb = InfluxDBConfig()
         self.ethereum = EthereumConfig()
         self.processing = ProcessingConfig()
+        self.redis = RedisConfig()
         self.logging = LoggingConfig()
         self.timezone = os.getenv('TZ', 'America/Argentina/Cordoba')
         

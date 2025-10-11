@@ -19,6 +19,7 @@ volumes:
   telegraf_data:
   mosquitto_data:
   mosquitto_logs:
+  redis_data:
 
 services:
   mariadb:
@@ -188,6 +189,22 @@ services:
       - mosquitto
       - influxdb
       - mariadb
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - redis_data:/data
+    networks:
+      - Opalo_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
 
   cloudflared:
     image: cloudflare/cloudflared:latest
