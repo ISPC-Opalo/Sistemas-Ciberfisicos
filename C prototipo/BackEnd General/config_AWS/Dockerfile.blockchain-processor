@@ -1,0 +1,53 @@
+# Dockerfile para Blockchain Processor GASLYT en AWS
+FROM python:3.11-slim
+
+# Metadatos
+LABEL maintainer="GASLYT Team"
+LABEL description="Blockchain Processor for GASLYT IoT System"
+LABEL version="1.0"
+
+# Variables de entorno
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    libffi-dev \
+    libssl-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear usuario no-root
+RUN groupadd -r gaslyt && useradd -r -g gaslyt gaslyt
+
+# Crear directorio de trabajo
+WORKDIR /app
+
+# Copiar requirements primero para aprovechar cache de Docker
+COPY requirements.txt .
+
+# Instalar dependencias Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código de la aplicación
+COPY . .
+
+# Crear directorio de logs
+RUN mkdir -p /app/logs && chown -R gaslyt:gaslyt /app
+
+# Cambiar a usuario no-root
+USER gaslyt
+
+# Exponer puerto (si es necesario para health checks)
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:8080/health', timeout=5)" || exit 1
+
+# Comando por defecto
+CMD ["python", "app/main.py", "--modo", "scheduler"]

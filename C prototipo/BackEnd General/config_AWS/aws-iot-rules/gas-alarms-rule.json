@@ -1,0 +1,22 @@
+{
+  "sql": "SELECT *, topic() as topic_name FROM 'gaslyt/+/alarmas'",
+  "description": "Procesar alarmas de gas GASLYT",
+  "ruleDisabled": false,
+  "actions": [
+    {
+      "cloudwatchMetric": {
+        "metricName": "GasAlarms",
+        "metricNamespace": "GASLYT/Devices",
+        "metricUnit": "Count",
+        "metricValue": "1",
+        "roleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/iot-cloudwatch-role"
+      }
+    },
+    {
+      "sns": {
+        "targetArn": "arn:aws:sns:us-east-1:YOUR_ACCOUNT_ID:gaslyt-alerts",
+        "roleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/iot-sns-role"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sql": "SELECT *, topic() as topic_name FROM 'gaslyt/+/metadata'",
+  "description": "Procesar metadatos de dispositivos GASLYT",
+  "ruleDisabled": false,
+  "actions": [
+    {
+      "dynamoDB": {
+        "tableName": "gaslyt-device-metadata",
+        "roleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/iot-dynamodb-role",
+        "hashKeyField": "device_id",
+        "hashKeyValue": "${idDispositivo}",
+        "rangeKeyField": "timestamp",
+        "rangeKeyValue": "${timestamp}"
+      }
+    }
+  ]
+}

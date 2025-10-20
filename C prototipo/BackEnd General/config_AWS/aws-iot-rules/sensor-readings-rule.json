@@ -1,0 +1,16 @@
+{
+  "sql": "SELECT *, topic() as topic_name FROM 'gaslyt/+/lecturas'",
+  "description": "Procesar lecturas de sensores GASLYT",
+  "ruleDisabled": false,
+  "actions": [
+    {
+      "cloudwatchMetric": {
+        "metricName": "SensorReadings",
+        "metricNamespace": "GASLYT/Devices",
+        "metricUnit": "Count",
+        "metricValue": "1",
+        "roleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/iot-cloudwatch-role"
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "run_as_user": "root"
+  },
+  "metrics": {
+    "namespace": "GASLYT/System",
+    "metrics_collected": {
+      "cpu": {
+        "measurement": [
+          "cpu_usage_idle",
+          "cpu_usage_iowait",
+          "cpu_usage_user",
+          "cpu_usage_system"
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ],
+        "totalcpu": false
+      },
+      "disk": {
+        "measurement": [
+          "used_percent"
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ]
+      },
+      "diskio": {
+        "measurement": [
+          "io_time",
+          "read_bytes",
+          "write_bytes",
+          "reads",
+          "writes"
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ]
+      },
+      "mem": {
+        "measurement": [
+          "mem_used_percent"
+        ],
+        "metrics_collection_interval": 60
+      },
+      "netstat": {
+        "measurement": [
+          "tcp_established",
+          "tcp_time_wait"
+        ],
+        "metrics_collection_interval": 60
+      },
+      "swap": {
+        "measurement": [
+          "swap_used_percent"
+        ],
+        "metrics_collection_interval": 60
+      }
+    }
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/var/log/telegraf/telegraf.log",
+            "log_group_name": "/aws/ec2/gaslyt/telegraf",
+            "log_stream_name": "{instance_id}/telegraf"
+          },
+          {
+            "file_path": "/var/log/blockchain-processor.log",
+            "log_group_name": "/aws/ec2/gaslyt/blockchain",
+            "log_stream_name": "{instance_id}/blockchain"
+          },
+          {
+            "file_path": "/var/log/mariadb/error.log",
+            "log_group_name": "/aws/ec2/gaslyt/mariadb",
+            "log_stream_name": "{instance_id}/mariadb"
+          }
+        ]
+      }
+    }
+  }
+}

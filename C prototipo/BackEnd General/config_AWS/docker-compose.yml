@@ -1,0 +1,218 @@
+# Docker Compose para servicios backend GASLYT en AWS EC2
+# Optimizado para AWS con servicios cloud (IoT Core, Grafana Cloud)
+
+name: gaslyt_aws_stack
+
+networks:
+  gaslyt_aws_network:
+    name: gaslyt_aws_network
+    driver: bridge
+
+volumes:
+  mariadb_data:
+  nodered_data:
+  portainer_data:
+  npm_data:
+  npm_letsencrypt:
+  influxdb_data:
+  telegraf_data:
+  redis_data:
+
+services:
+  mariadb:
+    image: mariadb:11.4
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - TZ=${TZ}
+    command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./init-mariadb.sql:/docker-entrypoint-initdb.d/init-mariadb.sql:ro
+    networks:
+      - gaslyt_aws_network
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -u root -p$${MARIADB_ROOT_PASSWORD} || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+      - DOCKER_INFLUXDB_INIT_RETENTION=${INFLUXDB_RETENTION}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    networks:
+      - gaslyt_aws_network
+    healthcheck:
+      test: ["CMD", "influx", "ping", "--host", "http://localhost:8086"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - nodered_data:/data
+    networks:
+      - gaslyt_aws_network
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - gaslyt_aws_network
+
+  npm:  # Nginx Proxy Manager
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx_proxy_manager
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    networks:
+      - gaslyt_aws_network
+    depends_on:
+      - mariadb
+      - nodered
+      - portainer
+      - influxdb
+      - adminer
+      - remix
+
+  adminer:  # GUI web para administrar MariaDB
+    image: adminer:latest
+    container_name: adminer
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - mariadb
+    networks:
+      - gaslyt_aws_network
+
+  remix:  # Remix IDE (web)
+    image: remixproject/remix-ide:latest
+    container_name: remix
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    networks:
+      - gaslyt_aws_network
+
+  # Telegraf para procesamiento de datos desde AWS IoT Core
+  telegraf:
+    image: telegraf:1.28
+    container_name: telegraf
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - INFLUXDB_ADMIN_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - AWS_IOT_ENDPOINT=${AWS_IOT_ENDPOINT}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - telegraf_data:/var/lib/telegraf
+    networks:
+      - gaslyt_aws_network
+    depends_on:
+      - influxdb
+      - mariadb
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - redis_data:/data
+    networks:
+      - gaslyt_aws_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  # CloudWatch Agent para métricas AWS
+  cloudwatch-agent:
+    image: amazon/cloudwatch-agent:latest
+    container_name: cloudwatch-agent
+    restart: unless-stopped
+    environment:
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - ./cloudwatch-config.json:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json:ro
+      - /proc/stat:/proc/stat:ro
+      - /proc/meminfo:/proc/meminfo:ro
+      - /proc/diskstats:/proc/diskstats:ro
+    networks:
+      - gaslyt_aws_network
+
+  # Blockchain Processor para AWS
+  blockchain-processor:
+    build: ../blockchain-processor
+    container_name: blockchain-processor
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - MARIADB_HOST=mariadb
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_ADMIN_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - ETH_NETWORK=${ETH_NETWORK}
+      - ETH_RPC_URL=${ETH_RPC_URL}
+      - ETH_PRIVATE_KEY=${ETH_PRIVATE_KEY}
+      - CONTRACT_ADDRESS=${CONTRACT_ADDRESS}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    networks:
+      - gaslyt_aws_network
+    depends_on:
+      - mariadb
+      - influxdb
+      - redis
+    volumes:
+      - ./logs:/app/logs
